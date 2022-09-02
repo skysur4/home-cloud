@@ -4,9 +4,9 @@ plugins {
 	id 'java'
 }
 
-group = 'com.example'
+group = 'io.cloud.home'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '17'
+sourceCompatibility = '8'
 
 repositories {
 	mavenCentral()

@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: TESTER
+
+server:
+  port: 7070
+  servlet:
+    context-path: /test
+
+logging:
+  level:
+    root: info

@@ -35,4 +35,16 @@ public class ObjectMapperUtils {
 		objectMapper.setPropertyNamingStrategy(PropertyNamingStrategies.SNAKE_CASE);
 		return objectMapper.convertValue(lowersnake, LowerSnakeModel.class);
 	}
+	
+	public static <T> T convert2Snake(Map<String, Object> camel, Class<T> c){
+		ObjectMapper objectMapper = new ObjectMapper();	//단일 용도이므로 로컬에서 선언
+		Map<String, Object> lowersnake = new HashMap<String, Object>();
+		
+		camel.forEach((key, value) -> {
+			lowersnake.put(CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, key), value);
+		});
+		
+		objectMapper.setPropertyNamingStrategy(PropertyNamingStrategies.SNAKE_CASE);
+		return objectMapper.convertValue(lowersnake, c);
+	}
 }

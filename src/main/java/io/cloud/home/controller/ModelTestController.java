@@ -13,6 +13,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import io.cloud.home.model.LowerSnakeModel;
 import io.cloud.home.model.UpperSnakeModel;
 import io.cloud.home.utils.ObjectMapperUtils;
+import io.cloud.home.utils.RegexUtils;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -31,15 +32,22 @@ public class ModelTestController{
 		camels.put("carModel", "2019G70FR2000CC");
 		camels.put("carName", "G70");
 		camels.put("carType", "Sports Sedan");
+		camels.put("carTypeTestValue1", "Sports Sedan Fast and Furious");
 		
 		String camelcase = objectMapper.writeValueAsString(camels);
 		log.info("camels: {}", camelcase);
 		
-		LowerSnakeModel lowerSnakeModel = ObjectMapperUtils.convert2LowerSnake(camels);
+		LowerSnakeModel lowerSnakeModel = RegexUtils.convertCamel2Snake(camels, LowerSnakeModel.class);
 		log.info("lower snake model: {}", lowerSnakeModel.toString());
 		
-		UpperSnakeModel upperSnakeModel = ObjectMapperUtils.convert2UpperSnake(camels);
+		UpperSnakeModel upperSnakeModel = RegexUtils.convertCamel2Snake(camels, UpperSnakeModel.class);
 		log.info("upper snake model: {}", upperSnakeModel.toString());
+
+//		LowerSnakeModel lowerSnakeModel2 = ObjectMapperUtils.convert2Snake(camels, LowerSnakeModel.class);
+//		log.info("lower snake model 2: {}", lowerSnakeModel2.toString());
+		
+//		UpperSnakeModel upperSnakeModel2 = ObjectMapperUtils.convert2Snake(camels, UpperSnakeModel.class);
+//		log.info("upper snake model 2: {}", upperSnakeModel2.toString());
 
 		return camelcase;
 	}

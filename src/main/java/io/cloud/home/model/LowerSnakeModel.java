@@ -10,4 +10,5 @@ public class LowerSnakeModel {
 	private String car_model;
 	private String car_name;
 	private String car_type;
+	private String car_type_test_value_1;
 }

@@ -12,4 +12,5 @@ public class UpperSnakeModel {
 	private String CAR_MODEL;
 	private String CAR_NAME;
 	private String CAR_TYPE;
+	private String CAR_TYPE_TEST_VALUE_1;
 }

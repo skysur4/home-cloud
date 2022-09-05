@@ -22,32 +22,23 @@ import lombok.extern.slf4j.Slf4j;
 public class ModelTestController{
     @Autowired
     ObjectMapper objectMapper;
-    
+
 	@GetMapping(value = "/lower")
 	public String check() throws JsonProcessingException {
 		Map<String, Object> camels = new HashMap<String, Object>();
-		
+
 		//test data
 		camels.put("carId", 1234);
 		camels.put("carModel", "2019G70FR2000CC");
 		camels.put("carName", "G70");
 		camels.put("carType", "Sports Sedan");
 		camels.put("carTypeTestValue1", "Sports Sedan Fast and Furious");
-		
+
 		String camelcase = objectMapper.writeValueAsString(camels);
 		log.info("camels: {}", camelcase);
-		
-		LowerSnakeModel lowerSnakeModel = RegexUtils.convertCamel2Snake(camels, LowerSnakeModel.class);
-		log.info("lower snake model: {}", lowerSnakeModel.toString());
-		
-		UpperSnakeModel upperSnakeModel = RegexUtils.convertCamel2Snake(camels, UpperSnakeModel.class);
-		log.info("upper snake model: {}", upperSnakeModel.toString());
 
-//		LowerSnakeModel lowerSnakeModel2 = ObjectMapperUtils.convert2Snake(camels, LowerSnakeModel.class);
-//		log.info("lower snake model 2: {}", lowerSnakeModel2.toString());
-		
-//		UpperSnakeModel upperSnakeModel2 = ObjectMapperUtils.convert2Snake(camels, UpperSnakeModel.class);
-//		log.info("upper snake model 2: {}", upperSnakeModel2.toString());
+		LowerSnakeModel lowerSnakeModel = RegexUtils.convertCamelMap2SnakeModel(camels, LowerSnakeModel.class);
+		log.info("lower snake model: {}", lowerSnakeModel.toString());
 
 		return camelcase;
 	}
